@@ -1,0 +1,32 @@
+﻿# WinSCP script to deploy and execute a JAR
+# https://github.com/PerMalmberg/RemoteDeployDebugForJava
+#
+# Open session
+open sftp://user:password@1.2.3.4
+
+# Change directory to where the file should go
+# cd /home/user
+
+# Send the file given as argument 1 on the command line
+put %1%"
+
+# Make sure to detach the screen with the name provided as argument 2 on the command line
+echo Detaching screen by name "%2%"
+call screen -d %2%
+
+# Send ^C to the screen to terminate the JVM
+echo Terminating JVM
+call screen -S %2% -p 0 -X stuff "^C"
+
+# Allow some time for the JVM to exit.
+call sleep 1
+
+# Start a new screen with the provided name and a jvm running the JAR file provided as argument 3 on the command line.
+# JVM options: server mode, suspend until debugger connected
+call screen -S "%2%" -d -m path/to/java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -jar "%3%"
+
+# Sleep so that the JVM has time to start before the debugger tries to connect.
+call sleep 1
+
+# Exit script
+exit
