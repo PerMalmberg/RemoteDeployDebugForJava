@@ -1,4 +1,4 @@
-# Remote deployment and debugging for Java
+# Remote deployment and debugging for Java via WinSCP and Screen
 
 ## Purpose
 To automate the starting and stopping of Java VMs when doing remote debugging.
