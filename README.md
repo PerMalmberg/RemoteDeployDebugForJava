@@ -33,8 +33,8 @@ Whenever you now do Run > Debug 'your name of config', the JAR will be deployed 
 The JVM will continue to run when you disconnect the debugger. There doesn't seem to be a way to fix that. It will however be terminated when you start your next debugging session.
 
 ## Misc
-Q: Why not just use '&' to fork a child process?
+Q: Why not just use '&' to fork a child process, get the PID and use that to kill the JVM?
 
 
-A: Because WinSCP can't handle such caracters in the script it generates when `call`-ing commands.
+A: Because WinSCP can't handle such characters in the script it generates when `call`-ing commands.
 
