@@ -8,7 +8,7 @@ open sftp://user:password@1.2.3.4
 # cd /home/user
 
 # Send the file given as argument 1 on the command line
-put %1%"
+put "%1%"
 
 # Make sure to detach the screen with the name provided as argument 2 on the command line
 echo Detaching screen by name "%2%"
